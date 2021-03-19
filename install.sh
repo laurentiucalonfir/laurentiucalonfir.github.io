@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-timedatectl set-ntp true
-pacstrap /mnt base base-devel git linux-lts linux-firmware nano networkmanager
-genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
 hwclock --systohc
 sed -i '177s/.//' /etc/locale.gen
@@ -16,7 +11,7 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 echo root:x | chpasswd
 
-pacman -S --noconfirm grub efibootmgr 
+pacman -S --noconfirm grub efibootmgr networkmanager linux-headers
 mkdir /boot/efi
 mount /dev/sda1 /boot/efi
 
