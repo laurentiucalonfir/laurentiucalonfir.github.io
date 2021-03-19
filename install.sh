@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-# FDISK hhygy
+# FDISK 
 
 timedatectl set-ntp true
 pacstrap /mnt base base-devel git linux-lts linux-firmware nano networkmanager
