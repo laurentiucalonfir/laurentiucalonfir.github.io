@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+# FDISK 
+
 timedatectl set-ntp true
 pacstrap /mnt base base-devel git linux-lts linux-firmware nano networkmanager
 genfstab -U /mnt >> /mnt/etc/fstab
