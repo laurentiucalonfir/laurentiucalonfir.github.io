@@ -25,7 +25,6 @@ systemctl enable NetworkManager
 
 useradd -m laurentiu
 echo laurentiu:x | chpasswd
-usermod -aG sudo laurentiu
 
 echo " ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
