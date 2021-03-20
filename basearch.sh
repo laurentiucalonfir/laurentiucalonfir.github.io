@@ -25,13 +25,10 @@ systemctl enable NetworkManager
 
 useradd -m laurentiu
 echo laurentiu:x | chpasswd
-usermod -aG libvirt laurentiu
+usermod -aG sudo laurentiu
 
 echo " ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
-git clone https://aur.archlinux.org/yay.git
-cd yay/
-makepkg -si --noconfirm
 
 /bin/echo -e "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
 
