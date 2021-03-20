@@ -1,6 +1,5 @@
 #!/bin/bash
 
-arch-chroot /mnt
 mkdir /boot/efi
 mount /dev/sda1 /boot/efi
 ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
