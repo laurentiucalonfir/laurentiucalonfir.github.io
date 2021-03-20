@@ -26,7 +26,7 @@ systemctl enable NetworkManager
 useradd -m laurentiu
 echo laurentiu:x | chpasswd
 
-echo " ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
+echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
 
 /bin/echo -e "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
