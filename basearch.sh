@@ -1,5 +1,8 @@
 #!/bin/bash
 
+pacstrap /mnt base base-devel linux-lts linux-firmware nano
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
 hwclock --systohc
 sed -i '177s/.//' /etc/locale.gen
