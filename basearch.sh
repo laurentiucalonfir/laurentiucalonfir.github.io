@@ -1,7 +1,5 @@
 #!/bin/bash
 
-mkdir /boot/efi
-mount /dev/sda1 /boot/efi
 ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
 hwclock --systohc
 sed -i '177s/.//' /etc/locale.gen
