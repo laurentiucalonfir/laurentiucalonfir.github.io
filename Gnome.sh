@@ -3,7 +3,6 @@
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
-sudo reflector -c Romania -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
 git clone https://aur.archlinux.org/yay.git
 cd yay/
