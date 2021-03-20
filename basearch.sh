@@ -11,7 +11,7 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 echo root:x | chpasswd
 
-pacman -S --noconfirm grub efibootmgr networkmanager linux-headers pacman-contrib reflector
+pacman -S --noconfirm grub efibootmgr networkmanager linux-headers pacman-contrib git
 
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
