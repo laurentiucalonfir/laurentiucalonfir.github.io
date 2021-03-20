@@ -1,9 +1,6 @@
 #!/bin/bash
 
-pacstrap /mnt base base-devel linux-lts linux-firmware nano
-genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
-
 mkdir /boot/efi
 mount /dev/sda1 /boot/efi
 ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
