@@ -8,7 +8,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay/
 makepkg -si --noconfirm
 
-sudo pacman -S --noconfirm xorg lightdm-gtk-greeter lightdm-gtk-greeter-settings cinnamon arc-gtk-theme arc-icon-theme xed metacity gnome-terminal gnome-system-monitor gnome-disk-utility imwheel numlockx
+sudo pacman -S --noconfirm xorg lightdm-gtk-greeter lightdm-gtk-greeter-settings cinnamon arc-gtk-theme arc-icon-theme xed metacity gnome-terminal gnome-system-monitor gnome-disk-utility imwheel numlockx archlinux-wallpaper
 
 yay -S --noconfirm google-chrome
 yay -S --noconfirm stremio
