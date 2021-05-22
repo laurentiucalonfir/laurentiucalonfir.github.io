@@ -13,6 +13,9 @@ sudo pacman -S --noconfirm xorg lightdm-gtk-greeter lightdm-gtk-greeter-settings
 yay -S --noconfirm google-chrome
 yay -S --noconfirm stremio
 yay -S --noconfirm wol-systemd
+yay -S --noconfirm mint-y-icons
+yay -S --noconfirm mint-themes
+
 
 sudo systemctl enable lightdm
 /bin/echo -e "\e[1;32mREBOOTING IN 5..4..3..2..1..\e[0m"
