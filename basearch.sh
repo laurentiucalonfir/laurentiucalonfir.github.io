@@ -65,6 +65,9 @@ echo "laurentiu ALL=(ALL) ALL" >> /mnt/etc/sudoers.d/laurentiu
 
 
 
+umount -a
+echo -e "\e[1;32mRebooting in 5..4..3..2..1\e[0m"
+sleep 5
+reboot
 
-/bin/echo -e "\e[1;32mDone! Type umount -a and reboot.\e[0m"
 
