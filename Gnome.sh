@@ -13,6 +13,7 @@ sudo pacman -S --noconfirm xorg gdm baobab eog evince file-roller gedit gnome-ba
 yay -S --noconfirm google-chrome startup-settings-git anydesk-bin stremio chrome-gnome-shell
 
 sudo systemctl enable gdm
+sudo systemctl enable anydesk
 /bin/echo -e "\e[1;32mREBOOTING IN 5..4..3..2..1..\e[0m"
 sleep 5
 sudo reboot
