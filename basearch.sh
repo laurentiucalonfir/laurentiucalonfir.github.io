@@ -55,14 +55,15 @@ arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager linux-head
 
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
-
-arch-chroot /mnt useradd -m laurentiu
-printf "x\nx" | arch-chroot /mnt passwd laurentiu
-
-
-echo "laurentiu ALL=(ALL) ALL" >> arch-chroot/mnt /etc/sudoers.d/laurentiu
-
 arch-chroot /mnt systemctl enable NetworkManager
+
+exit
+
+useradd -m laurentiu
+printf "x\nx" | passwd laurentiu
+echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
+
+
 
 
 /bin/echo -e "\e[1;32mDone! Type umount -a and reboot.\e[0m"
