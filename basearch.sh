@@ -42,7 +42,7 @@ echo "arch" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:x | chpasswd
+arch-chroot /mnt echo root:x | chpasswd
 
 arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager linux-headers pacman-contrib git
 
