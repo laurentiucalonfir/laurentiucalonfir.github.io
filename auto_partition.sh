@@ -19,4 +19,4 @@ echo n # Add a new partition
 echo   # First sector
 echo   # Last sector (Accept default: varies)
 echo w # Write changes
-) | fdisk /dev/sdb
+) | fdisk /dev/sda
