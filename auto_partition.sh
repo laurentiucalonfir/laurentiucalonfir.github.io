@@ -1,4 +1,4 @@
-
+#!/bin/bash
 (
 echo g # Create a new empty DOS partition table
 echo n # Add a new partition
