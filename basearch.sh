@@ -58,11 +58,11 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 arch-chroot /mnt useradd -m laurentiu
 printf "x\nx" | arch-chroot /mnt passwd laurentiu
-exit
 
-echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
-systemctl enable NetworkManager
+echo "laurentiu ALL=(ALL) ALL" >> arch-chroot/mnt /etc/sudoers.d/laurentiu
+
+arch-chroot /mnt systemctl enable NetworkManager
 
 
 /bin/echo -e "\e[1;32mDone! Type umount -a and reboot.\e[0m"
