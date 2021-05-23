@@ -43,6 +43,8 @@ echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 arch-chroot /mnt echo root:x | chpasswd
+printf "x\nx" | arch-chroot /mnt passwd
+
 
 arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager linux-headers pacman-contrib git
 
@@ -58,6 +60,7 @@ arch-chroot /mnt systemctl enable NetworkManager
 
 arch-chroot /mnt useradd -m laurentiu
 arch-chroot /mnt echo laurentiu:x | chpasswd
+printf "x\nx" | arch-chroot /mnt passwd laurentiu
 
 echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
