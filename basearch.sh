@@ -27,8 +27,8 @@ mkswap /dev/sda2
 mkfs.ext4 /dev/sda3
 swapon /dev/sda2
 mount /dev/sda3 /mnt
-mkdir /boot/efi
-mount /dev/sda1 /boot/efi
+mkdir /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 pacstrap /mnt base base-devel linux-lts linux-firmware nano
 genfstab -U /mnt >> /mnt/etc/fstab
 
