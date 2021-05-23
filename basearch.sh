@@ -27,11 +27,12 @@ mkswap /dev/sda2
 mkfs.ext4 /dev/sda3
 swapon /dev/sda2
 mount /dev/sda3 /mnt
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 
 pacstrap /mnt base base-devel linux-lts linux-firmware nano
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt mkdir /mnt/boot/efi
-arch-chroot /mnt mount /dev/sda1 /mnt/boot/efi
+
 
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
 arch-chroot /mnt hwclock --systohc
