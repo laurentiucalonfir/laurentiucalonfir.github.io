@@ -30,6 +30,8 @@ mount /dev/sda3 /mnt
 
 pacstrap /mnt base base-devel linux-lts linux-firmware nano
 genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt mkdir /boot/efi
+arch-chroot /mnt mount /dev/sda1 /boot/efi
 
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
 arch-chroot /mnt hwclock --systohc
@@ -47,11 +49,10 @@ arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager linux-head
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
-mkdir /boot/efi
-mount /dev/sda1 /boot/efi
 
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
+
+arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 arch-chroot /mnt systemctl enable NetworkManager
 
