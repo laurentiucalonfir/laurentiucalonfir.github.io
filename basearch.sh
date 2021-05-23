@@ -30,18 +30,18 @@ mount /dev/sda3 /mnt
 
 pacstrap /mnt base base-devel linux-lts linux-firmware nano
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt mkdir /boot/efi
-arch-chroot /mnt mount /dev/sda1 /boot/efi
+arch-chroot /mnt mkdir /mnt/boot/efi
+arch-chroot /mnt mount /dev/sda1 /mnt/boot/efi
 
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
 arch-chroot /mnt hwclock --systohc
-sed -i '177s/.//' /etc/locale.gen
+sed -i '177s/.//' /mnt/etc/locale.gen
 arch-chroot /mnt locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "arch" >> /etc/hostname
-echo "127.0.0.1 localhost" >> /etc/hosts
-echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
+echo "LANG=en_US.UTF-8" >> /mnt/etc/locale.conf
+echo "arch" >> /mnt/etc/hostname
+echo "127.0.0.1 localhost" >> /mnt/etc/hosts
+echo "::1       localhost" >> /mnt/etc/hosts
+echo "127.0.1.1 arch.localdomain arch" >> /mnt/etc/hosts
 arch-chroot /mnt echo root:x | chpasswd
 printf "x\nx" | arch-chroot /mnt passwd
 
@@ -57,11 +57,10 @@ arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bo
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 arch-chroot /mnt systemctl enable NetworkManager
 
-exit
 
-useradd -m laurentiu
-printf "x\nx" | passwd laurentiu
-echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
+arch-chroot /mnt useradd -m laurentiu
+printf "x\nx" | arch-chroot /mnt  passwd laurentiu
+echo "laurentiu ALL=(ALL) ALL" >> /mnt/etc/sudoers.d/laurentiu
 
 
 
