@@ -27,8 +27,7 @@ mkswap /dev/sda2
 mkfs.ext4 /dev/sda3
 swapon /dev/sda2
 mount /dev/sda3 /mnt
-mkdir /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
+
 pacstrap /mnt base base-devel linux-lts linux-firmware nano
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -48,8 +47,11 @@ arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager linux-head
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
-arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+mkdir /boot/efi
+mount /dev/sda1 /boot/efi
+
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
 
 arch-chroot /mnt systemctl enable NetworkManager
 
