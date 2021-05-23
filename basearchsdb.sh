@@ -47,7 +47,7 @@ arch-chroot /mnt echo root:x | chpasswd
 printf "x\nx" | arch-chroot /mnt passwd
 
 
-arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager linux-headers pacman-contrib git
+arch-chroot /mnt pacman -S --noconfirm grub efibootmgr networkmanager pacman-contrib git
 
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
