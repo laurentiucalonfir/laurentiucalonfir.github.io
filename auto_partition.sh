@@ -4,6 +4,7 @@
 (
 echo g # Create a new empty DOS partition table
 echo n # Add a new partition
+echo
 echo   # First sector (Accept default: 1)
 echo +512M  # Last sector (Accept default: varies) 
 echo t
@@ -17,6 +18,7 @@ echo 2
 echo 19
 echo n # Add a new partition
 echo   # First sector
+echo
 echo   # Last sector (Accept default: varies)
 echo w # Write changes
 ) | fdisk /dev/sda
