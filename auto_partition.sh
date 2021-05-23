@@ -1,7 +1,7 @@
 #!/bin/bash
 
-fdisk /dev/sda
 
+(
 echo g # Create a new empty DOS partition table
 echo n # Add a new partition
 echo   # First sector (Accept default: 1)
@@ -19,4 +19,4 @@ echo n # Add a new partition
 echo   # First sector
 echo   # Last sector (Accept default: varies)
 echo w # Write changes
-
+) | fdisk /dev/sdb
