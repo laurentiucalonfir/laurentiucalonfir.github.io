@@ -59,7 +59,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 arch-chroot /mnt useradd -m laurentiu
 printf "x\nx" | arch-chroot /mnt passwd laurentiu
 
-arch-chroot /mnt echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
+echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
 arch-chroot /mnt systemctl enable NetworkManager
 
