@@ -57,7 +57,7 @@ arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bo
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 useradd -m laurentiu
-printf "x\nx" | passwd laurentiu
+printf "x\nx" | arch-chroot /mnt passwd laurentiu
 
 echo "laurentiu ALL=(ALL) ALL" >> /etc/sudoers.d/laurentiu
 
