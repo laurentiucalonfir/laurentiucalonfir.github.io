@@ -1,5 +1,6 @@
 #!/bin/bash
-fdisk /dev/sdb
+
+fdisk /dev/sda
 
 echo g # Create a new empty DOS partition table
 echo n # Add a new partition
