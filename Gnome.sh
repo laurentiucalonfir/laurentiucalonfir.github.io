@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo pacman -S --noconfirm reflector
-sudo reflector -c Romania -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector -c Romania -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
