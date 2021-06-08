@@ -1,8 +1,5 @@
 #!/bin/bash
 
-sudo pacman -S --noconfirm reflector
-sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 cd /tmp
