@@ -3,6 +3,10 @@
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
+sudo pacman -S --noconfirm reflector
+sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo pacman -Syu
+
 
 git clone https://aur.archlinux.org/yay.git
 cd yay/
