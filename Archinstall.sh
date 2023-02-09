@@ -1,82 +1,66 @@
+
+
 #!/bin/bash
 
-# Set variables for partition names and file systems
-root_partition=root
-swap_partition=swap
-root_filesystem=ext4
-swap_filesystem=swap
+This script will install Arch Linux with Linux LTS, user account, systemd bootloader, NetworkManager, and swap partition.
+Define the root and home partitions
+root_partition=sda1
+home_partition=sda2
 
-# Update the system clock
-timedatectl set-ntp true
+Format the partitions
+mkfs.ext4 /dev/$root_partition
+mkfs.ext4 /dev/$home_partition
 
-# Partition the disk
-parted /dev/sda mklabel gpt
-parted /dev/sda mkpart primary $root_filesystem 1MiB 100%
-parted /dev/sda mkpart primary $swap_filesystem 100% 100%
-parted /dev/sda set 2 swap on
+Mount the root and home partitions
+mount /dev/$root_partition /mnt
+mkdir /mnt/home
+mount /dev/$home_partition /mnt/home
 
-# Format the partitions
-mkfs.$root_filesystem /dev/sda1
-mkswap /dev/sda2
-swapon /dev/sda2
+Create a swap partition
+fallocate -l 2G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
 
-# Mount the file system
-mount /dev/sda1 /mnt
+Install base packages and Linux LTS kernel
+pacstrap /mnt base base-devel linux-lts
 
-# Select the mirrors
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
-
-# Install the base packages
-pacstrap /mnt base linux-lts linux-lts-headers networkmanager
-
-# Generate the fstab file
+Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# Create the system configuration script
-cat <<EOF > /mnt/install-config.sh
-#!/bin/bash
+Configure the system
+arch-chroot /mnt /bin/bash << EOF
 
-# Set the hostname
-echo "archlinux" > /etc/hostname
-sudo systemctl enable NetworkManager 
+Set the time zone
+ln -sf /usr/share/zoneinfo/Europe/Bucharest etc/localtime
+hwclock --systohc
 
-# Set the time zone
-ln -sf /usr/share/zoneinfo/Europe/Bucharest /etc/localtime
-
-# Set the locale
-echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+Localization
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
-# Configure the initramfs
-mkinitcpio -p linux-lts
+Hostname
+echo "archlinux" >> /etc/hostname
 
-# Install the bootloader
+Networking
+systemctl enable NetworkManager
+
+Add a user account
+useradd -m -g users -G wheel -s /bin/bash user
+echo "user:password" | chpasswd
+echo "user ALL=(ALL) ALL" >> /etc/sudoers
+
+Bootloader
 bootctl install
+echo "default arch" >> /boot/loader/loader.conf
+echo "timeout 3" >> /boot/loader/loader.conf
+echo "editor 0" >> /boot/loader/loader.conf
+echo "title Arch Linux" >> /boot/loader/entries/arch.conf
+echo "linux /vmlinuz-linux-lts" >> /boot/loader/entries/arch.conf
+echo "initrd /initramfs-linux-lts.img" >> /boot/loader/entries/arch.conf
+echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/$root_partition) rw" >> /boot/loader/entries/arch.conf
 
-# Configure the boot loader
-cat <<EOF > /boot/loader/entries/arch.conf
-title   Arch Linux
-linux   /vmlinuz-linux-lts
-initrd  /initramfs-linux-lts.img
-options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sda1) rw
-EOF
-
-# Set the root password
-echo "root:root" | chpasswd
-
-# Create a new user
-useradd -m -G wheel -s /bin/bash user
-echo "user:user" | chpasswd
-
-# Configure sudo
-echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel
-EOF
-
-# Chroot into the new system
-arch-chroot /mnt /bin/bash /install-config.sh
-
-# Unmount and reboot
-umount /mnt
+Exit chroot and reboot
+exit
 reboot
