@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 #This script will install Arch Linux with Linux LTS, user account, systemd bootloader, NetworkManager, and swap partition.
