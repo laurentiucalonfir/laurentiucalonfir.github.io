@@ -6,6 +6,7 @@ EFI_PART="${DISK}1"
 ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
+PASSWORD="x'
 TIMEZONE="Europe/Bucharest"
 
 # Update system clock
@@ -55,9 +56,6 @@ EOT
 # Initramfs
 mkinitcpio -P
 
-# Root password
-echo "Set root password:"
-passwd
 
 # Bootloader installation
 bootctl install
@@ -76,8 +74,8 @@ EOT
 
 # Create a new user
 useradd -m -G wheel $USERNAME
-echo "Set password for $USERNAME:"
-passwd x
+echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
+
 
 # Configure sudo
 pacman -S --noconfirm sudo
