@@ -83,7 +83,7 @@ passwd $PASSWORD
 
 # Configure sudo
 pacman -S --noconfirm sudo
-echo "%wheel ALL=\(ALL\) ALL" >> /etc/sudoers
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 # Enable necessary services
 systemctl enable systemd-networkd
