@@ -13,9 +13,9 @@ timedatectl set-ntp true
 
 # Partition the disk
 parted -s $DISK mklabel gpt
-parted -s $DISK mkpart primary fat32 1MiB 513MiB
+parted -s $DISK mkpart primary fat32 1MiB 1GB
 parted -s $DISK set 1 esp on
-parted -s $DISK mkpart primary ext4 513MiB 100%
+parted -s $DISK mkpart primary ext4 1GB 100%
 
 # Format the partitions
 mkfs.fat -F32 $EFI_PART
@@ -77,7 +77,7 @@ EOT
 # Create a new user
 useradd -m -G wheel $USERNAME
 echo "Set password for $USERNAME:"
-passwd $USERNAME
+passwd x
 
 # Configure sudo
 pacman -S --noconfirm sudo
