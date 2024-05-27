@@ -68,7 +68,7 @@ editor 0
 EOT
 
 cat <<EOT > /boot/loader/entries/arch.conf
-title   Arch Linux LTS
+title   Arch-Linux lts
 linux   /vmlinuz-linux-lts
 initrd  /initramfs-linux-lts.img
 initrd  /intel-ucode.img
