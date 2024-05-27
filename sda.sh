@@ -76,8 +76,10 @@ options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT_PART) rw
 EOT
 
 # Create a new user
+# Create a new user
 useradd -m -G wheel $USERNAME
-echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
+echo "Set password for $USERNAME:"
+passwd $PASSWORD
 
 # Configure sudo
 pacman -S --noconfirm sudo
