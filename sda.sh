@@ -56,6 +56,9 @@ EOT
 # Initramfs
 mkinitcpio -P
 
+# Root password
+echo "Set root password:"
+passwd
 
 # Bootloader installation
 bootctl install
