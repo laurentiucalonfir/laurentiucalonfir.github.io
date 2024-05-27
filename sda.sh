@@ -76,7 +76,6 @@ EOT
 useradd -m -G wheel $USERNAME
 echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
 
-
 # Configure sudo
 pacman -S --noconfirm sudo
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
