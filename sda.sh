@@ -71,6 +71,7 @@ cat <<EOT > /boot/loader/entries/arch.conf
 title   Arch Linux LTS
 linux   /vmlinuz-linux-lts
 initrd  /initramfs-linux-lts.img
+initrd  /intel-ucode.img
 options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT_PART) rw
 EOT
 
