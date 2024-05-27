@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Variables
-DISK="/dev/sdX"
+DISK="/dev/sda"
 EFI_PART="${DISK}1"
 ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
-USERNAME="user"
+USERNAME="laurentiu"
+TIMEZONE="Europe/Bucharest"
 
 # Update system clock
 timedatectl set-ntp true
@@ -35,7 +36,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash <<EOF
 
 # Set the time zone
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 hwclock --systohc
 
 # Localization
