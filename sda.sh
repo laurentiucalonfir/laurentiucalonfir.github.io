@@ -7,7 +7,7 @@ ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
 PASSWORD="x"  # replace with desired password or prompt for it securely
-TIMEZONE="Region/City"
+TIMEZONE="Europe/Bucharest"
 
 # Update system clock
 timedatectl set-ntp true
