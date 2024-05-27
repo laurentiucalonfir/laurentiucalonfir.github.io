@@ -6,8 +6,8 @@ EFI_PART="${DISK}1"
 ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
-PASSWORD="x'
-TIMEZONE="Europe/Bucharest"
+PASSWORD="x"  # replace with desired password or prompt for it securely
+TIMEZONE="Region/City"
 
 # Update system clock
 timedatectl set-ntp true
@@ -28,7 +28,7 @@ mkdir /mnt/boot
 mount $EFI_PART /mnt/boot
 
 # Install base system and linux-lts kernel
-pacstrap /mnt base linux-lts linux-lts-headers linux-firmware
+pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib lynx
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -57,8 +57,7 @@ EOT
 mkinitcpio -P
 
 # Root password
-echo "Set root password:"
-passwd
+echo -e "$PASSWORD\n$PASSWORD" | passwd
 
 # Bootloader installation
 bootctl install
@@ -76,10 +75,8 @@ options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT_PART) rw
 EOT
 
 # Create a new user
-# Create a new user
 useradd -m -G wheel $USERNAME
-echo "Set password for $USERNAME:"
-passwd $PASSWORD
+echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
 
 # Configure sudo
 pacman -S --noconfirm sudo
