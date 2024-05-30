@@ -92,6 +92,10 @@ EOF
 
 # Unmount and reboot
 umount -R /mnt
-echo "Installation complete. Rebooting in 5 seconds..."
-sleep 5
+for i in {5..1}
+do 
+echo -ne "$i.."
+sleep 1
+done
+echo "Rebooting now..."
 reboot
