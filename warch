@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-
+EFI_PART="${DISK}1"
+ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
 PASSWORD="x"  # replace with desired password or prompt for it securely
