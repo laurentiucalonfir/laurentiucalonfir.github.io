@@ -12,6 +12,15 @@ TIMEZONE="Europe/Bucharest"
 # Update system clock
 timedatectl set-ntp true
 
+# Format the partitions
+mkfs.ext4 $ROOT_PART
+
+# Mount the file systems
+mount $ROOT_PART /mnt
+mkdir /mnt/boot
+mount $EFI_PART /mnt/boot
+
+
 # Install base system and linux-lts kernel
 pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib lynx networkmanager vim
 
