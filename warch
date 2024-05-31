@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # Variables
-EFI_PART="${DISK}1"
-ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
 PASSWORD="x"  # replace with desired password or prompt for it securely
@@ -10,11 +8,6 @@ TIMEZONE="Europe/Bucharest"
 
 # Update system clock
 timedatectl set-ntp true
-
-# Mount the file systems
-mount $ROOT_PART /mnt
-mkdir /mnt/boot
-mount $EFI_PART /mnt/boot
 
 # Install base system and linux-lts kernel
 pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib lynx networkmanager vim
