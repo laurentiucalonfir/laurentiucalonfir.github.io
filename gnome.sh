@@ -27,10 +27,6 @@ mount $ROOT_PART /mnt
 mkdir /mnt/boot
 mount $EFI_PART /mnt/boot
 
-#Configure reflector
-pacman -Syu --noconfirm reflector
-reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-
 # Install base system and linux-lts kernel
 pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib lynx networkmanager vim
 
@@ -86,6 +82,10 @@ echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
 # Configure sudo
 pacman -S --noconfirm sudo
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
+#Configure reflector
+pacman -Syu --noconfirm reflector
+reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 #Configure chaotic-aur
 pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
