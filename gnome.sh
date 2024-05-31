@@ -28,7 +28,7 @@ mkdir /mnt/boot
 mount $EFI_PART /mnt/boot
 
 #Configure reflector
-pacman -S --noconfirm reflector
+pacman -Sy --noconfirm reflector
 reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Install base system and linux-lts kernel
