@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # Variables
-DISK="/dev/sda"
-EFI_PART="${DISK}1"
-ROOT_PART="${DISK}2"
+
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
 PASSWORD="x"  # replace with desired password or prompt for it securely
@@ -13,7 +11,7 @@ TIMEZONE="Europe/Bucharest"
 timedatectl set-ntp true
 
 # Format the partitions
-mkfs.ext4 $ROOT_PART
+mkfs.ext4 /dev/sda5
 
 # Mount the file systems
 mount $ROOT_PART /mnt
@@ -65,7 +63,7 @@ title   Arch-Linux lts
 linux   /vmlinuz-linux-lts
 initrd  /initramfs-linux-lts.img
 initrd  /intel-ucode.img
-options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT_PART) rw
+options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sda5) rw
 EOT
 
 # Create a new user
