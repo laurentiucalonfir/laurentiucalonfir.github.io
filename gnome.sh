@@ -83,6 +83,10 @@ echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
 pacman -S --noconfirm sudo
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
+#Configure reflector
+pacman -S --noconfirm reflector
+reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+
 #Configure chaotic-aur
 pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
 pacman-key --lsign-key 3056513887B78AEB
