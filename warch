@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Variables
+DISK="/dev/sda"
+EFI_PART="${DISK}1"
 ROOT_PART="${DISK}2"
 HOSTNAME="archlinux"
 USERNAME="laurentiu"
