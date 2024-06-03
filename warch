@@ -11,10 +11,10 @@ TIMEZONE="Europe/Bucharest"
 timedatectl set-ntp true
 
 # Format the partitions
-mkfs.ext4 /dev/sda5
+mkfs.ext4 /dev/sda4
 
 # Mount the file systems
-mount /dev/sda5 /mnt
+mount /dev/sda4 /mnt
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
@@ -63,7 +63,7 @@ title   Arch-Linux lts
 linux   /vmlinuz-linux-lts
 initrd  /initramfs-linux-lts.img
 initrd  /intel-ucode.img
-options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sda5) rw
+options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/sda4) rw
 EOT
 
 # Create a new user
