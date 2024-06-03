@@ -14,9 +14,9 @@ timedatectl set-ntp true
 mkfs.ext4 /dev/sda5
 
 # Mount the file systems
-mount dev/sda5 /mnt
+mount /dev/sda5 /mnt
 mkdir /mnt/boot
-mount dev/sda1 /mnt/boot
+mount /dev/sda1 /mnt/boot
 
 # Install base system and linux-lts kernel
 pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib lynx networkmanager vim
