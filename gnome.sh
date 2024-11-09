@@ -28,7 +28,7 @@ mkdir /mnt/boot
 mount $EFI_PART /mnt/boot
 
 # Install base system and linux-lts kernel
-pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib w3m networkmanager vim
+pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib networkmanager vim
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -101,7 +101,7 @@ systemctl enable systemd-resolved
 systemctl enable NetworkManager
 
 # Install gnome
-pacman -Sy --noconfirm archlinux-wallpaper google-chrome extension-manager anydesk stremio kdeconnect baobab evince gdm gnome-calculator gnome-terminal gnome-tweaks seahorse gnome-calendar gnome-characters gnome-clocks gnome-color-manager gnome-connections gnome-contacts gnome-control-center gnome-disk-utility gnome-font-viewer gnome-keyring gnome-logs gnome-maps gnome-menus gnome-music gnome-remote-desktop gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-system-monitor gnome-text-editor gnome-tour gnome-user-docs gnome-user-share gnome-weather grilo-plugins gvfs gvfs-afc gvfs-dnssd gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-onedrive gvfs-smb gvfs-wsdd loupe malcontent nautilus orca rygel simple-scan snapshot sushi tecla totem tracker3-miners xdg-desktop-portal-gnome xdg-user-dirs-gtk
+pacman -Sy --noconfirm archlinux-wallpaper google-chrome extension-manager anydesk stremio kdeconnect gnome-terminal gnome-tweaks seahorse gnome --ignore gnome-backgrounds,gnome-contacts,gnome-software,gnome-console,epiphany
 systemctl enable gdm
 EOF
 
