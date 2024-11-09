@@ -28,7 +28,7 @@ mkdir /mnt/boot
 mount $EFI_PART /mnt/boot
 
 # Install base system and linux-lts kernel
-pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib lynx networkmanager vim
+pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware intel-ucode pipewire pipewire-alsa pacman-contrib w3m networkmanager vim
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
