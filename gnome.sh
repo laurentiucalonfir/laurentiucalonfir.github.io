@@ -101,7 +101,7 @@ systemctl enable systemd-resolved
 systemctl enable NetworkManager
 
 # Install gnome
-pacman -Sy --noconfirm archlinux-wallpaper google-chrome extension-manager anydesk stremio kdeconnect gnome-terminal gnome-tweaks seahorse gnome --ignore gnome-backgrounds,gnome-contacts,gnome-software,gnome-console,epiphany
+pacman -Sy --noconfirm archlinux-wallpaper google-chrome extension-manager anydesk stremio kdeconnect gnome-tweaks seahorse baobab evince gdm gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-color-manager gnome-connections gnome-terminal 	gnome-control-center gnome-disk-utility gnome-font-viewer gnome-keyring gnome-logs gnome-maps gnome-menus gnome-music gnome-remote-desktop gnome-session gnome-settings-daemon gnome-shell gnome-shell-extensions gnome-system-monitor gnome-text-editor gnome-user-docs gnome-user-share gnome-weather grilo-plugins gvfs gvfs-afc gvfs-dnssd gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs 	gvfs-onedrive gvfs-smb gvfs-wsdd loupe malcontent nautilus orca rygel simple-scan snapshot sushi tecla totem xdg-desktop-portal-gnome xdg-user-dirs-gtk
 systemctl enable gdm
 EOF
 
